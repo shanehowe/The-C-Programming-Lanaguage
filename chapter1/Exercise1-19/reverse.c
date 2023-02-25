@@ -1,3 +1,8 @@
+/*
+    Write a function reverse(s) that reverses
+    the character string s one line at a time
+*/
+
 #include <stdio.h>
 
 #define BUFF_SIZE 1000

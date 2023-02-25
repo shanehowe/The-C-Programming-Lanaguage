@@ -1,3 +1,9 @@
+/*
+    write a program to check a C program for rudimentary syntax
+    errors like unbalanced parentheses, brackets, braces.
+    dont forget about quotes escape sequences and comments
+*/
+
 #include <stdio.h>
 
 #define MAXLINE 1000
@@ -10,15 +16,15 @@
 #define DOUBLE_STR 'd'
 
 int mygetline(char line[], int maxline);
-void print_results(int parencount, int curlycount, int singleqcount, int doubleqcount);
+void print_results(int parencount, int curlycount, int singleqcount, int doubleqcount, int sqrbracketcount);
 
 int main(void)
 {
     int in_comment, in_str, len, i, c, comment_type, str_type,
-        paren_count, curly_count, singleq_count, doubleq_count;
+        paren_count, curly_count, singleq_count, doubleq_count, squarebracket_count;
     char line[MAXLINE];
 
-    paren_count = curly_count = singleq_count = doubleq_count = 0;
+    paren_count = curly_count = singleq_count = doubleq_count = squarebracket_count = 0;
     in_comment = in_str = FALSE;
     while ((len = mygetline(line, MAXLINE)) > 0)
     {
@@ -110,6 +116,11 @@ int main(void)
                 {
                     doubleq_count++;
                 }
+
+                if (line[i] == ']' || line[i] == '[')
+                {
+                    squarebracket_count++;
+                }
             }
         }
     }
@@ -127,7 +138,7 @@ int main(void)
         printf("Found unbalanced double quotes\n");
     }
 
-    print_results(paren_count, curly_count, singleq_count, doubleq_count);
+    print_results(paren_count, curly_count, singleq_count, doubleq_count, squarebracket_count);
 
     return 0;
 }
@@ -149,7 +160,7 @@ int mygetline(char line[], int maxline)
     return i;
 }
 
-void print_results(int parencount, int curlycount, int singleqcount, int doubleqcount)
+void print_results(int parencount, int curlycount, int singleqcount, int doubleqcount, int sqrbracketcount)
 {
     int mistakes;
 
@@ -176,6 +187,11 @@ void print_results(int parencount, int curlycount, int singleqcount, int doubleq
     {
         printf("Found unbalanced double quotes\n");
         mistakes++;
+    }
+
+    if (sqrbracketcount % 2 != 0)
+    {
+        printf("Found unbalanced square brackets\n");
     }
 
     if (mistakes == 0)

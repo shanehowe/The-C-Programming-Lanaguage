@@ -1,3 +1,8 @@
+/*
+    Write a program to remove all comments from a C program
+    Dont forget to handle quoted strings and character constants properly
+*/
+
 #include <stdio.h>
 
 #define MAX_LINE 1000
