@@ -38,6 +38,8 @@ void mygetline(char line[], int max_line)
 
     for (i = 0; i < max_line - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
         line[i] = c;
+
+   line[i] = '\0';
 }
 
 int htoi(char s[])
@@ -80,7 +82,7 @@ int htoi(char s[])
         if (isalpha(current_char))
         {
             // If the current value is an invalid letter
-            if (current_char > 'F')
+            if (current_char < 'A' || current_char > 'F')
                 return -1;
 
             decimal_value += (int)(current_char - 'A' + 10) * pow(16, exponent); 
