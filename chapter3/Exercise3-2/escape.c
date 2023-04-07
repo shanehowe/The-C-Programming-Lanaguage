@@ -16,11 +16,15 @@ int main(void)
 {
     char t[] = "The quick brown fox\n\tjumped over the cat\n";
     char s[90];
+    char unescaped_string[90];
 
     escape(t, s);
 
     printf("Original string: %s\n\n", t);
     printf("Escaped string: %s\n", s);
+
+    unescape(s, unescaped_string);
+    printf("\nEscaped string unescaped: %s\n", unescaped_string);
 
     return 0;
 }
@@ -55,8 +59,32 @@ void unescape(char t[], char s[])
 {
     int i, c, j;
 
+    j = 0;
     for (i = 0; (c = t[i]) != '\0'; ++i)
     {
-
+        switch (c) 
+        {
+            case '\\':
+                switch (t[i + 1])
+                {
+                    case 'n':
+                        s[j++] = '\n';
+                        ++i;
+                        break;
+                    case 't':
+                        s[j++] = '\t';
+                        ++i;
+                        break;
+                    default:
+                        s[j++] = c;
+                        break;
+                }
+                break;
+            default:
+                s[j++] = t[i];
+                break;
+        }
     }
+
+    s[j] = '\0';
 }
