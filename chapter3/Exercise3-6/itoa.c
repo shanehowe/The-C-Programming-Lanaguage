@@ -46,7 +46,7 @@ void modified_itoa(int n, char s[], int field_width)
     {
         while (i < field_width)
         {
-            s[i++] = ' x';
+            s[i++] = ' ';
         }
         s[i] = '\0';
     }
