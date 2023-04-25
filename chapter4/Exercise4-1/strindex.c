@@ -28,7 +28,6 @@ int strindex(char s[], char t[])
     int i, j, k, t_length;
 
     t_length = strlen(t);
-    k = t_length - 1;
 
     for (i = strlen(s) - 1; i >= 0; --i)
     {
