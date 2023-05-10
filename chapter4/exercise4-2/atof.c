@@ -13,7 +13,7 @@
 double extended_atof(char s[]);
 
 int main(void)
-{
+{ 
     char num[] = "12.45e-6";
 
     printf("Result: %.8f\n", extended_atof(num));
